@@ -1,9 +1,12 @@
-import './app.css'
+import "./app.css";
+import Header from "./components/Header/Header";
+import Shop from "./components/Shop/Shop";
 
 export function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='App'></div>
-  )
+    <div className="App">
+      <Header></Header>
+      <Shop></Shop>
+    </div>
+  );
 }
