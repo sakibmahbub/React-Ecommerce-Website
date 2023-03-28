@@ -3,7 +3,7 @@
   height: 510px;
   border: 1px solid #95a0a7;
   border-radius: 10px;
-  overflow: hidden;
+  position: relative;
 }
 .product img {
   width: 286px;
@@ -13,7 +13,7 @@
 }
 
 .product-name {
-  margin-top: 10px;
+  margin-top: 0;
   margin-bottom: 0;
   font-family: "Lato";
   font-style: normal;
@@ -29,4 +29,16 @@
 }
 .product-info p {
   margin-top: 7px;
+}
+
+.cart-btn {
+  width: 100%;
+  background: #ffe0b3;
+  border: 1px solid #95a0a7;
+  border-radius: 0 0 8px 8px;
+  position: absolute;
+  bottom: 0;
+}
+.cart-btn:hover {
+  background-color: orange;
 }
