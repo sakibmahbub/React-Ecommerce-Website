@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { addToDb, getShoppingCart } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Product/Product";
@@ -6,13 +6,10 @@ import "./Shop.css";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
-
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    fetch(
-      "https://raw.githubusercontent.com/ProgrammingHero1/ema-john-resources/main/fakeData/products.json"
-    )
+    fetch("products.json")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -20,24 +17,26 @@ const Shop = () => {
   useEffect(() => {
     const storedCart = getShoppingCart();
     const savedCart = [];
-    // Step 1 : Get the id
+    // step 1: get id of the addedProduct
     for (const id in storedCart) {
-      // Step 2 : Get the product by using id
+      // step 2: get product from products state by using id
       const addedProduct = products.find((product) => product.id === id);
-      // Step 3 : Get quantity of the product
       if (addedProduct) {
+        // step 3: add quantity
         const quantity = storedCart[id];
         addedProduct.quantity = quantity;
-        // SEtp 4: Add the added product to the saved cart
+        // step 4: add the added product to the saved cart
         savedCart.push(addedProduct);
       }
+      // console.log('added Product', addedProduct)
     }
-    // Step 5 : Set the cart
+    // step 5: set the cart
     setCart(savedCart);
   }, [products]);
 
-  const handleForCart = (product) => {
+  const handleAddToCart = (product) => {
     let newCart = [];
+
     const exists = cart.find((pd) => pd.id === product.id);
     if (!exists) {
       product.quantity = 1;
@@ -54,12 +53,12 @@ const Shop = () => {
 
   return (
     <div className="shop-container">
-      <div className="product-container">
+      <div className="products-container">
         {products.map((product) => (
           <Product
             key={product.id}
             product={product}
-            handleForCart={handleForCart}
+            handleAddToCart={handleAddToCart}
           ></Product>
         ))}
       </div>
