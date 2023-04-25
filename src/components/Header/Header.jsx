@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <nav className="header">
-      <img src={logo} alt="" />
+      <Link to="/shop">
+        <img src={logo} alt="" />
+      </Link>
       <div>
         <Link to="/shop">Shop</Link>
         <Link to="/orders">Orders</Link>
         <Link to="/inventory">Inventory</Link>
         <Link to="/login">Login</Link>
+        <Link to="/signup">Sign Up</Link>
       </div>
     </nav>
   );
