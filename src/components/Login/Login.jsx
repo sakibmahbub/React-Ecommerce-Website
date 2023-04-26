@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/authProvider";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+ 
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -22,7 +25,7 @@ const Login = () => {
         console.log(loggedUser);
         form.reset();
         setSuccess("Successfully signed in!");
-        navigate("/shop");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
